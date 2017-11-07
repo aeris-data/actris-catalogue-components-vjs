@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Eurochamp Catalogue Components</title>
+  <script type="text/javascript" component="aeris-data/eurochamp-metadata-edit-component-vjs@latest" src="https://rawgit.com/aeris-data/aeris-component-loader/master/aerisComponentLoader.js"></script>
+  <script type="text/javascript" component="aeris-data/eurochamp-metadata-component-vjs@latest" src="https://rawgit.com/aeris-data/aeris-component-loader/master/aerisComponentLoader.js"></script>
+  <script type="text/javascript" component="aeris-data/aeris-commons-components-vjs@latest" src="https://rawgit.com/aeris-data/aeris-component-loader/master/aerisComponentLoader.js"></script>
+  <script type="text/javascript" component="aeris-data/aeris-metadata-components-vjs@latest" src="https://rawgit.com/aeris-data/aeris-component-loader/master/aerisComponentLoader.js"></script>
+  <script type="text/javascript" component="aeris-data/aeris-catalogue-components-vjs@latest" src="https://rawgit.com/aeris-data/aeris-component-loader/master/aerisComponentLoader.js"></script>
+
+  <style>
+    body {
+      font-family: 'Open Sans', sans-serif;
+      margin: 0;
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <link rel="stylesheet" href="https://rawgit.com/aeris-data/aeris-metadata-components-vjs/develop/src/style/aeris-metadata-shared-style.css">
+  <style type="text/css">
+
+  </style>
+
+  <form action="">
+    <input type="radio" name="dataset" value="0000-0002-8042-7228" onclick="handleRequestOrcid(value)"> JF Doussin</input>
+    <input type="radio" name="dataset" checked="true" value="0000-0002-2275-0537" onclick="handleRequestOrcid(value)"> Super Admin</input>
+    <input type="radio" name="dataset" value="9999-0002-2275-0537" onclick="handleRequestOrcid(value)"> Inconnu au bataillon</input>
+    <input type="radio" name="dataset" value="" onclick="handleRequestOrcid(value)"> Personne</input>
+
+  </form>
+  <div>
+
+    <aeris-theme id="theme2" active="true" primary="#F1684E" emphasis="#74cc22"></aeris-theme>
+    <aeris-orcid orcid="0000-0002-2275-0537"></aeris-orcid>
+    <aeris-catalog metadata-service="https://sedoo.aeris-data.fr/catalogue/rest/metadatarecette/" program="ACTRIS-FR" >
+
+      <div slot="criteria">
+       <actris-collection-search-criteria deployed="true"></actris-collection-search-criteria>
+      </div>
+      <div slot="buttons">
+        <aeris-catalogue-search-button></aeris-catalogue-search-button>
+        <aeris-catalogue-reset-button></aeris-catalogue-reset-button>
+      </div>
+      <div slot="metadatafooter">
+        <metadata-edit-button></metadata-edit-button>
+      </div>
+    </aeris-catalog>
+
+  </div>
+
+  <script src="dist/build.js"></script>
+  <script>
+    function handleRequestOrcid(value) {
+      console.log("dans event orcid index, value : " + value);
+      document.querySelector("aeris-orcid").setAttribute("orcid", value);
+    }
+  </script>
+
+</body>
+
+</html>
