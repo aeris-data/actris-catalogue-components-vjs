@@ -1,10 +1,20 @@
 <i18n>
 {
   "en": {
-	  "null": "Unknown"
+	  "Aerosol": "Aerosol",
+	  "Atmospheric Humidity": "Atmospheric Humidity",
+	  "Flux": "Flux",
+	  "Gases": "Gases",
+	  "Meteo": "Meteo",
+	  "ReOBS": "ReOBS"
   },
   "fr": {
-	  "null": "Inconnu"
+	  "Aerosol": "Aérosol",
+	  "Atmospheric Humidity": "Humidité atmosphérique",
+	  "Flux": "Flux",
+	  "Gases": "Gaz",
+	  "Meteo": "Météo",
+	  "ReOBS": "ReOBS"
   }
 }
 </i18n>
@@ -13,7 +23,7 @@
 <span>
 <div class="program-header" v-for="collection in collections">
 	<label :for="collection.name"><input type="checkbox" :id="collection.name" :name="collection.name" class="program-checkbox"> <span class="program-name-row">
-	{{collection.name}}
+	{{$t(collection.name)}}
 </span></label></div>
 </span>
 </template>
