@@ -55,7 +55,7 @@ export default {
 		  {id:"COPDD", name: "COPDD", box:{north:"45.8485",south:"45.7474",east:"3.1922",west:"2.8260"}},
 		  {id:"DDU", name: "DDU", box:{north:"-66.614",south:"-66.6936",east:"140.133",west:"139.7997"}},
 		  {id:"LOA", name: "LOA", box:{north:"50.6394",south:"50.6145",east:"3.1729",west:"3.1210"}},
-		  {id:"OHP", name: "OPAR", box:{north:"43.9303",south:"43.9072",east:"5.7338",west:"5.6878"}},
+		  {id:"OHP", name: "OHP", box:{north:"43.9303",south:"43.9072",east:"5.7338",west:"5.6878"}},
 		  {id:"OPAR", name: "OPAR", box:{north:"-20.6181",south:"-21.6939",east:"56.2584",west:"54.6654"}},
 		  {id:"OPE", name: "OPE", box:{north:"48.5183",south:"48.4736",east:"5.4205",west:"5.3110"}},
 		  {id:"P2OA", name: "P2OA", box:{north:"43.1435",south:"42.8399",east:"0.4524",west:"0.0434"}},
