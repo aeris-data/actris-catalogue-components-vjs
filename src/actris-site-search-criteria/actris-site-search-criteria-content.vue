@@ -1,30 +1,21 @@
 <i18n>
 {
   "en": {
-	  "Aerosol": "Aerosol",
-	  "Atmospheric Humidity": "Atmospheric Humidity",
-	  "Flux": "Flux",
-	  "Gases": "Gases",
-	  "Meteo": "Meteo",
-	  "ReOBS": "ReOBS"
+	  "all": "All"
+	  
   },
   "fr": {
-	  "Aerosol": "Aérosol",
-	  "Atmospheric Humidity": "Humidité atmosphérique",
-	  "Flux": "Flux",
-	  "Gases": "Gaz",
-	  "Meteo": "Météo",
-	  "ReOBS": "ReOBS"
+	  "all": "Tous"
   }
 }
 </i18n>
 
 <template>
 <span>
-<div class="program-header" v-for="collection in collections">
-	<label :for="collection.name"><input type="checkbox" :id="collection.name" :name="collection.name" class="program-checkbox"> <span class="program-name-row">
-	{{$t(collection.name)}}
-</span></label></div>
+<div v-for="site in sites">
+	<input type="radio" name="site" :id="site.id" :value="site.id" v-model="picked" />
+		<label :for="site.id">{{site.name}}</label>
+</div>
 </span>
 </template>
 
@@ -52,21 +43,17 @@ export default {
   },
   
   created: function () {
-	  console.log("Actris collection criteria content - Creating");
+	  console.log("Actris site criteria content - Creating");
 	  this.$i18n.locale = this.lang;
 	  
 	  this.handleSearchBarListener = this.handleSearchBarEvent.bind(this);
 	  document.addEventListener('aerisCatalogueSearchEvent', this.handleSearchBarListener);
 	  this.handleSearchBarResetListener = this.handleSearchBarResetEvent.bind(this);
 	  document.addEventListener('aerisCatalogueResetEvent', this.handleSearchBarResetListener);
+	  this.sites = [{id:"all", name: this.$i18n.t("all")}, {id: "SIRTA", name: "SIRTA", box: {north: "48.8129", south: "48.5545", east: "2.4696", west: "1.8887"}},{id:"OPAR", name: "OPAR", box:{north:"-20.6181",south:"-21.6939",east:"56.2584",west:"54.6654"}}],
+	  this.picked="all"
 
-	  var parentService = document.querySelector('aeris-catalog').attributes.getNamedItem('metadata-service').value;
-	  parentService = parentService.endsWith('/') ? parentService + 'collections/' : parentService + '/collections/';
-	  var program = document.querySelector('aeris-catalog').attributes.getNamedItem('program').value;
-	  var url = parentService;
-	  url +=  "?program=" + program;
-	  this.$http.get(url, {headers: {'Content-Type': 'application/json', 'Accept': 'application/json'}})
-	  .then((response)=>{this.handleSuccess(response)},(response)=>{this.handleError(response)});
+	 
   },
 
   mounted: function() {
@@ -82,8 +69,8 @@ export default {
     return {
 		handleSearchBarListener: null,
 		handleSearchBarResetListener: null,
-		program:null,
-		collections: []
+		sites: [],
+		picked: null
     }
   },
   
@@ -91,47 +78,20 @@ export default {
   },
   
   methods: {
-	  
-	handleSuccess : function(response) {
-		var aux = response.body;
-		this.program = aux[0].name
-		this.collections = aux[0].collections;
-	},
-	
-	
-	handleError: function(response) {
-		console.log("Actris collection criteria - Error while accessing server:"); 
-		var error = response.status;
-		var message = response.statusText;
-		if(!error) message = 'Can\'t connect to the server';
-		console.log('Error ' + error + ': ' + message);
-	},
 	
 	handleSearchBarEvent: function(e) {
-		var aux = this.$el.querySelectorAll("input:checked")
-		var result = []
-		for (var i = 0; i < aux.length; i++) {
-			var entry = {}
-			var name = aux[i].id;
-			entry.name= name
-			entry.program= this.program;
-			result.push(entry);
+		console.log(this.picked)
+		if (this.picked != "all") {
+			for (var i = 0; i < this.sites.length; i++) {
+				if (this.sites[i].id==this.picked) {
+					e.detail.box = this.sites[i].box
+				}
+			}
 		}
-		if (result.length > 0) {
-			e.detail.collections = result;
-		} 
   	},
 	
   	handleSearchBarResetEvent: function(e) {
-
-  		// uncheck everything 
-        var parent = this.$el.querySelectorAll("input");
-        parent.forEach(function(element) {
-        	if (element.checked) {
-        		element.checked = false;
-        	}
-        })
-        
+  		this.picked = "all"
   	},
   	
 

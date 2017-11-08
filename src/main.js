@@ -17,8 +17,8 @@ Vue.use(VueAerisLanguagePlugin)
 import ActrisCollectionSearchCriteria from './actris-collection-search-criteria/actris-collection-search-criteria.vue';
 import ActrisCollectionSearchCriteriaContent from './actris-collection-search-criteria/actris-collection-search-criteria-content.vue';
 
-
-
+import ActrisSiteSearchCriteria from './actris-site-search-criteria/actris-site-search-criteria.vue';
+import ActrisSiteSearchCriteriaContent from './actris-site-search-criteria/actris-site-search-criteria-content.vue';
 
 ljs.addAliases({
 	dep: [
@@ -56,6 +56,8 @@ ljs.load('dep', function() {
 			
 			registerElement('actris-collection-search-criteria-content', ActrisCollectionSearchCriteriaContent);
 			registerElement('actris-collection-search-criteria', ActrisCollectionSearchCriteria);
+			registerElement('actris-site-search-criteria-content', ActrisSiteSearchCriteriaContent);
+			registerElement('actris-site-search-criteria', ActrisSiteSearchCriteria);
 			stopactrisTimer();
 
 		}
