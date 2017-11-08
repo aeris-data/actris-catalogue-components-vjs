@@ -1,10 +1,10 @@
 <i18n>
 {
 	"en": {
-	    "sites": "Sites (test)"
+	    "sites": "Sites"
 	  },
 	  "fr": {
-	    "sites": "Sites (test)"
+	    "sites": "Sites"
 	  }
 }
 </i18n>
