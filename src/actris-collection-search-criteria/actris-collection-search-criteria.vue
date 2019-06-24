@@ -1,10 +1,10 @@
 <i18n>
 {
 	"en": {
-	    "collections": "Collections"
+	    "collections": "Products"
 	  },
 	  "fr": {
-	    "collections": "Collections"
+	    "collections": "Produits"
 	  }
 }
 </i18n>
@@ -20,46 +20,38 @@
 <script>
 export default {
   props: {
-  	lang:  {
+    lang: {
       type: String,
-      default: 'en'
+      default: "en"
     },
-    deployed:  {
-        type: Boolean,
-        default: false
-      }
+    deployed: {
+      type: Boolean,
+      default: false
+    }
   },
-  
+
   watch: {
-    lang (value) {
-	      this.$i18n.locale = value;
+    lang(value) {
+      this.$i18n.locale = value;
     }
   },
-  
-  destroyed: function() {
-  },
-  
-  created: function () {
-	  this.$i18n.locale = this.lang;
+
+  destroyed: function() {},
+
+  created: function() {
+    this.$i18n.locale = this.lang;
   },
 
-  mounted: function() {
-  },
-  
-  computed: {
-  	
+  mounted: function() {},
+
+  computed: {},
+
+  data() {
+    return {};
   },
 
-   data () {
-    return {
-    }
-  },
-  
-  updated: function() {
-  },
-  
-  methods: {
-  
-  }
-}
+  updated: function() {},
+
+  methods: {}
+};
 </script>
