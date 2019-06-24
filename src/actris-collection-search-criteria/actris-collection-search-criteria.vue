@@ -4,7 +4,7 @@
 	    "collections": "Products"
 	  },
 	  "fr": {
-	    "collections": "Produits"
+	    "collections": "Products"
 	  }
 }
 </i18n>
